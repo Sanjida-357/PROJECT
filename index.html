@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container" id="authContainer">
+        <!-- Login Page -->
+        <div class="auth-page active" id="loginPage">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>l
+                    <p>Please login to your account</p>
+                </div>
+                <div class="auth-form">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                            </div>
+                            <span class="error-message" id="loginEmailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword('loginPassword')"></i>
+                            </div>
+                            <span class="error-message" id="loginPasswordError"></span>
+                        </div>
+                        <div class="form-options">
+                            <label class="remember-me">
+                                <input type="checkbox" id="rememberMe"> Remember me
+                            </label>
+                            <a href="#" class="auth-link" onclick="showPage('forgotPassword')">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="auth-button" id="loginButton">
+                            <span class="button-text">Login</span>
+                            <span class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+                    <div class="divider">or continue with</div>
+                    <div class="social-login">
+                        <div class="social-icons">
+                            <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+                            <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="auth-footer">
+                        <span>Don't have an account?</span>
+                        <a href="#" class="auth-link" onclick="showPage('signup')">Sign up</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div class="auth-page" id="signupPage">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <h1>Create Account</h1>
+                    <p>Join us today!</p>
+                </div>
+                <div class="auth-form">
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="signupName" placeholder="Enter your full name" required>
+                            </div>
+                            <span class="error-message" id="signupNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                            </div>
+                            <span class="error-message" id="signupEmailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword('signupPassword')"></i>
+                            </div>
+                            <div class="password-strength">
+                                <div class="password-strength-bar"></div>
+                            </div>
+                            <span class="error-message" id="signupPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirmPassword">Confirm Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword('signupConfirmPassword')"></i>
+                            </div>
+                            <span class="error-message" id="signupConfirmPasswordError"></span>
+                        </div>
+                        <button type="submit" class="auth-button" id="signupButton">
+                            <span class="button-text">Sign Up</span>
+                            <span class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <span>Already have an account?</span>
+                        <a href="#" class="auth-link" onclick="showPage('login')">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forgot Password Page -->
+        <div class="auth-page" id="forgotPasswordPage">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <h1>Reset Password</h1>
+                    <p>We'll send you a reset link</p>
+                </div>
+                <div class="auth-form">
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <label for="forgotEmail">Email Address</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="forgotEmail" placeholder="Enter your email" required>
+                            </div>
+                            <span class="error-message" id="forgotEmailError"></span>
+                        </div>
+                        <button type="submit" class="auth-button" id="forgotPasswordButton">
+                            <span class="button-text">Send Reset Link</span>
+                            <span class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                        <button type="button" class="auth-button secondary" onclick="showPage('login')">
+                            Back to Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Page -->
+        <div class="auth-page" id="resetPasswordPage">
+            <div class="auth-box">
+                <div class="auth-header">
+                    <h1>New Password</h1>
+                    <p>Create a new password</p>
+                </div>
+                <div class="auth-form">
+                    <form id="resetPasswordForm">
+                        <div class="form-group">
+                            <label for="resetPassword">New Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="resetPassword" placeholder="Enter new password" required>
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword('resetPassword')"></i>
+                            </div>
+                            <div class="password-strength">
+                                <div class="password-strength-bar"></div>
+                            </div>
+                            <span class="error-message" id="resetPasswordError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="resetConfirmPassword">Confirm Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="resetConfirmPassword" placeholder="Confirm new password" required>
+                                <i class="fas fa-eye toggle-password" onclick="togglePassword('resetConfirmPassword')"></i>
+                            </div>
+                            <span class="error-message" id="resetConfirmPasswordError"></span>
+                        </div>
+                        <button type="submit" class="auth-button" id="resetPasswordButton">
+                            <span class="button-text">Update Password</span>
+                            <span class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
